@@ -20,3 +20,6 @@ The following guides illustrate how to use some features concretely:
 * jackson : 序列化、反序列化、自訂義序列化JSON
 * annotation : @ExtendWith、@SpringBootTest、@Autowired、@RequestMapping、@RestController
 * File : 使用 BufferedReader 讀檔案、BufferedWriter寫檔案
+
+#### branch :master_IoC
+練習使用IoC來切換儲存方式
