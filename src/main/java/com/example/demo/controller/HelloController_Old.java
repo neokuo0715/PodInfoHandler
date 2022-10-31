@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.PodDTO_Old;
-import com.example.demo.service.HelloService_Old;
+import com.example.demo.service.impl.HelloService_Old;
 
 @RestController
 public class HelloController_Old {

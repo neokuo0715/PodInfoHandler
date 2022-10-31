@@ -17,7 +17,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.example.demo.controller.HelloController_Old;
-import com.example.demo.service.HelloService_Old;
+import com.example.demo.service.impl.HelloService_Old;
 
 @ExtendWith(MockitoExtension.class)
 public class HelloControllerTest_Old {

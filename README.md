@@ -15,8 +15,10 @@ The following guides illustrate how to use some features concretely:
 * [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
 * [Building REST services with Spring](https://spring.io/guides/tutorials/rest/)
 
-### 如何使用這份LAB
+### 如何使用這分LAB
  用到了什麼
 * jackson : 序列化、反序列化、自訂義序列化JSON
 * annotation : @ExtendWith、@SpringBootTest、@Autowired、@RequestMapping、@RestController
 * File : 使用 BufferedReader 讀檔案、BufferedWriter寫檔案
+#### branch master_IoC 
+使用IoC的方式 實作切換存方式

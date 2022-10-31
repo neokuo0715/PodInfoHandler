@@ -24,7 +24,7 @@ import org.springframework.test.util.ReflectionTestUtils;
 
 import com.example.demo.controller.ResultController;
 import com.example.demo.dto.PodResultDTO;
-import com.example.demo.service.PodResultService;
+import com.example.demo.service.impl.PodResultService;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -62,7 +62,7 @@ public class PodResultControllerTest {
 		//given
 		//when
 		//then
-		final String baseUrl = "/adapter/savePodInfo";
+		final String baseUrl = "/adapter/podInfo";
         URI uri = new URI(baseUrl);
 		String requestBody =  String.format(buildRequetBody(), "") ;
         HttpHeaders headers = new HttpHeaders();
@@ -86,7 +86,7 @@ public class PodResultControllerTest {
 	
 	@Test
 	void check_savePodInfoWithResult_url() throws URISyntaxException {
-		String url = "/adapter/savePodInfoWithResult";
+		String url = "/adapter/podInfoWithResult";
 		URI uri = new URI(url);
 		String json =  String.format(buildRequetBody(), ",\"result\": \"success\"\r\n") ;
 		HttpHeaders headers = new HttpHeaders();
@@ -112,7 +112,7 @@ public class PodResultControllerTest {
 	void check_getPodInfoByUuid_url() throws URISyntaxException {
 		//given
 		//when
-		String url = "/adapter/getPodsInfo?uuid=1234567";
+		String url = "/adapter/podsInfo?uuid=1234567";
 		URI uri = new URI(url);
 		ResponseEntity<String> jsonStr = restTemplate.getForEntity(uri, String.class);
 		//then

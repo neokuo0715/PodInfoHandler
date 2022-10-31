@@ -13,26 +13,39 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.context.ApplicationContext;
+import org.springframework.core.env.Environment;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import com.example.demo.DemoApplication;
 import com.example.demo.dto.PodResultDTO;
-import com.example.demo.service.PodResultService;
+import com.example.demo.service.PodInfoRepoServiceterface;
+import com.example.demo.service.impl.PodResultService;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(webEnvironment =SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = DemoApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class PodResultServiceTest {
 	
 	@Autowired
 	private PodResultService service ;
 	
+	@Value("${remote.adapter.filePath}")
+	private String filePostion;
+	
+	@Autowired
+	private Environment env;
+	
+	@Autowired
+	private ApplicationContext appContext;
+	
+	@Autowired
+	private PodInfoRepoServiceterface podInfoRepoSvc;
 	
 	private PodResultDTO podDto;
 	
-	@Value("${result.api.position}")
-	private String filePostion;
-	//1.when savePodInfo(PodResultDTO) then write podInfo into file 
+	
 	@BeforeEach
 	void init() {
 		
@@ -41,6 +54,7 @@ public class PodResultServiceTest {
 		podDto.setHostName("podHal");
 		podDto.setResult("success");
 	}
+	
 	
 	@Test
 	void when_savePodInfo_then_write_into_file() throws IOException {
@@ -108,6 +122,10 @@ public class PodResultServiceTest {
 		new File(filePostion).delete();
 	}
 	
+	
+	/**
+	 * 多筆pod資料查詢
+	 */
 	@Test
 	void when_getPodsinfoByUuidWithMulti_then_return_JsonRes() {
 		//given
@@ -121,6 +139,21 @@ public class PodResultServiceTest {
 		Assertions.assertTrue(result.contains("podEven"));
 		new File(filePostion).delete();
 	}
+	
+	// 測試注入
+	@Test
+	void check_PodInfoRepoInterface_imple_PodInfoRepoFile() {
+		//given
+		//when
+		// get properties from application.propterties is same as @ConditionOnProperty name
+		String podInfoRepo = env.getProperty("remote.adapter.podInfoRepo");
+		String havingValue = appContext.getBean("podInfoRepoFileService").getClass().getAnnotation(ConditionalOnProperty.class).havingValue();
+		//then
+		Assertions.assertEquals("localFile", podInfoRepo);
+		Assertions.assertEquals(havingValue, podInfoRepo);
+	}
+	
+	
 	
 	
 	private long getContentAndlinesFromFile(String path, StringBuilder strBuilder) {

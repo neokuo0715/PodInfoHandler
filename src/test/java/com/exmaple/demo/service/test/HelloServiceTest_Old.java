@@ -15,7 +15,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.example.demo.dto.PodDTO_Old;
 import com.example.demo.model.Pod_Old;
-import com.example.demo.service.HelloService_Old;
+import com.example.demo.service.impl.HelloService_Old;
 
 @ExtendWith(MockitoExtension.class)
 public class HelloServiceTest_Old {
