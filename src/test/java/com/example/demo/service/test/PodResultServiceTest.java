@@ -1,4 +1,4 @@
-package com.exmaple.demo.service.test;
+package com.example.demo.service.test;
 
 import java.io.BufferedReader;
 import java.io.File;

@@ -73,6 +73,56 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "local activeMQ producer test",
+			"item": [
+				{
+					"name": "testProducer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/producer/1234567",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"producer",
+								"1234567"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "server",
+			"value": "localhost:8081",
+			"type": "default"
 		}
 	]
 }
