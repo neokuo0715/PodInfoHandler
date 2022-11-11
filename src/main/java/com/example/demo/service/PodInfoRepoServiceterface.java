@@ -17,6 +17,6 @@ public interface PodInfoRepoServiceterface {
 	 * @param uuid
 	 * @return
 	 */
-	public List<PodResultDTO> getPodsInfoByUuid(String uuid) ;
+	public List<String> getPodsInfoByUuid(String uuid) ;
 	
 }

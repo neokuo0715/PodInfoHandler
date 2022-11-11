@@ -45,11 +45,11 @@ public class PodInfoRepoFileService implements PodInfoRepoServiceterface {
 	}
 
 	@Override
-	public List<PodResultDTO> getPodsInfoByUuid(String uuid) {
+	public List<String> getPodsInfoByUuid(String uuid) {
 		// TODO Auto-generated method stub
 		File file = new File(podsInfoPosition);
 		if(file.exists()) {
-			List<PodResultDTO> result = new ArrayList<>();
+			List<String> result = new ArrayList<>();
 			// prase file to obj.
 			try {
 				BufferedReader br = new BufferedReader(new FileReader(file));
@@ -57,8 +57,8 @@ public class PodInfoRepoFileService implements PodInfoRepoServiceterface {
 					String podInfo = br.readLine();
 					// if line has nothing
 					if(podInfo.trim().length() != 0) {
-						PodResultDTO podDto = objectMapper.readValue(podInfo, PodResultDTO.class);
-						result.add(podDto);
+//						PodResultDTO podDto = objectMapper.readValue(podInfo, PodResultDTO.class);
+						result.add(podInfo);
 					}
 				}
 				br.close();
@@ -66,7 +66,7 @@ public class PodInfoRepoFileService implements PodInfoRepoServiceterface {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			return result.stream().filter(podInfo -> podInfo.getUuid().equals(uuid)).collect(Collectors.toList());
+			return result;
 		}else {
 			return null;
 		}

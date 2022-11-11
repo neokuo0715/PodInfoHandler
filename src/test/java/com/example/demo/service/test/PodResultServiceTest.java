@@ -127,7 +127,7 @@ public class PodResultServiceTest {
 	 * 多筆pod資料查詢
 	 */
 	@Test
-	void when_getPodsinfoByUuidWithMulti_then_return_JsonRes() {
+	void when_getPodsInfoByUuidWithMulti_then_return_JsonRes() {
 		//given
 		service.savePodInfo(podDto);
 		service.savePodInfo(new PodResultDTO("1234567","podEven"));

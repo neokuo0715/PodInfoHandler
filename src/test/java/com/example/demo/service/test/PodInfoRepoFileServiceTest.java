@@ -45,7 +45,7 @@ public class PodInfoRepoFileServiceTest {
 	}
 	
 	@Test
-	void when_getPodsInfoByUuid_then_return_filteredResult() throws IOException {
+	void when_getPodsInfoByUuid_then_return_ListOfString() throws IOException {
 		// given
 		// add fake info
 		File file = new File(filePath);
@@ -54,9 +54,9 @@ public class PodInfoRepoFileServiceTest {
 		fw.append(fakePodInfo());
 		fw.close();
 		//when
-		List<PodResultDTO>  result = service.getPodsInfoByUuid("1234566");
+		List<String>  result = service.getPodsInfoByUuid("1234566");
 		//then
-		Assertions.assertTrue(result.isEmpty());
+		Assertions.assertEquals(1, result.size());
 		file.delete();
 		
 	}
@@ -71,7 +71,7 @@ public class PodInfoRepoFileServiceTest {
 		fw.append(fakePodInfo());
 		fw.close();
 		//when
-		List<PodResultDTO>  result = service.getPodsInfoByUuid("1234567");
+		List<String>  result = service.getPodsInfoByUuid("1234567");
 		//then
 		Assertions.assertEquals(1, result.size());
 		file.delete();

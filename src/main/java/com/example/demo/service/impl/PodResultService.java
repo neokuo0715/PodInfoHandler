@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.PodResultDTO;
 import com.example.demo.dto.PodsResultDTO;
+import com.example.demo.service.JsonConvertorInterface;
 import com.example.demo.service.PodInfoRepoServiceterface;
 import com.example.demo.utils.PodsResultDTOSerializer;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -24,7 +25,8 @@ public class PodResultService {
 	@Autowired
 	private PodInfoRepoServiceterface podInfoRepoSvc;
 	
-	
+	@Autowired
+	private JsonConvertorInterface jsonConvertor;
 	
  	/**
  	 * 為了之後取得這些Pods資訊
@@ -32,7 +34,7 @@ public class PodResultService {
  	 */
 	public void savePodInfo(PodResultDTO podDto) {
 		podDto.setTime(LocalDateTime.now());
-		String podInfoJson = convertToJson(podDto);
+		String podInfoJson = jsonConvertor.podConvertToJson(podDto);
 		podInfoRepoSvc.savePodInfoIntoRepo(podInfoJson);
 		
 	}
@@ -45,34 +47,12 @@ public class PodResultService {
 	 */
 	public String getPodsInfoByUuid(String uuid)  {
 		
-		List<PodResultDTO> podsInfo =  podInfoRepoSvc.getPodsInfoByUuid(uuid);
+		List<String> podsInfoStr =  podInfoRepoSvc.getPodsInfoByUuid(uuid);
+		List<PodResultDTO> podsInfo = jsonConvertor.convertToPods(podsInfoStr);
 		//find file 
 		PodsResultDTO result = new PodsResultDTO();
 		result.setUuid(uuid);
 		result.setPodsInfo(podsInfo);
-		return convertToJson(result);
-	}
-
-	
-	private String convertToJson(Object result) {
-		//jackson
-		Module module  = buildModule();
-		objectMapper.registerModule(module);
-		String response = "";
-		try {
-			response = objectMapper.writeValueAsString(result);
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return response;
-	}
-
-	
-	private Module buildModule() {
-		// set custom serializer 
-		SimpleModule module = new SimpleModule();
-		module.addSerializer(PodsResultDTO.class, new PodsResultDTOSerializer());
-		return module;
+		return jsonConvertor.podConvertToJson(result);
 	}
 }
