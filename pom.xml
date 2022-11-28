@@ -92,8 +92,43 @@
 		    <version>5.8.2</version>
 		    <scope>test</scope>
 		</dependency>
+		<!-- webClient integration test  -->
+		<dependency>
+		   <groupId>com.squareup.okhttp3</groupId>
+		   <artifactId>okhttp</artifactId>
+		   <version>4.10.0</version>
+		   <scope>test</scope>
+		</dependency>
+		<dependency>
+		   <groupId>com.squareup.okhttp3</groupId>
+		   <artifactId>mockwebserver</artifactId>
+		   <version>4.10.0</version>
+		   <scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.projectreactor/reactor-core for Mono -->
+		<dependency>
+		    <groupId>io.projectreactor</groupId>
+		    <artifactId>reactor-core</artifactId>
+		    <version>3.4.21</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-webflux for webClient 
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-webflux</artifactId>
+		    <version>5.3.20</version>
+		</dependency>-->
+		<dependency>
+		  <groupId>org.springframework.boot</groupId>
+		  <artifactId>spring-boot-starter-webflux</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.projectreactor/reactor-test for StepVerifier -->
+		<dependency>
+		    <groupId>io.projectreactor</groupId>
+		    <artifactId>reactor-test</artifactId>
+		    <version>3.1.0.RELEASE</version>
+		    <scope>test</scope>
+		</dependency>
 
-		
 	</dependencies>
 
 	<build>
