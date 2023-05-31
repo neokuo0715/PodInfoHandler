@@ -18,6 +18,25 @@ public class PodsResultDTOSerializer extends StdSerializer<PodsResultDTO> {
         super(t);
     }
 
+    /**
+     * except :
+     * {
+     *     "uuid": "123123",
+     *     "podsInfo" : [
+     *          {
+     *              "hostName" : "padHal",
+     *              "reuslt" : "",
+     *              "time" : "2023-05-31 14:16"
+     *          }
+     *     ]
+     * }
+     * @param value Value to serialize; can <b>not</b> be null.
+     * @param jgen Generator used to output resulting Json content
+     * @param provider Provider that can be used to get serializers for
+     *   serializing Objects value contains, if any.
+     * @throws IOException
+     * @throws JsonProcessingException
+     */
     @Override
     public void serialize(
     		PodsResultDTO value, JsonGenerator jgen, SerializerProvider provider) 
